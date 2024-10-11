@@ -1,9 +1,13 @@
-// script.js
-
-// Function to display an alert message
 function showAlert() {
-    alert('XSS: "Hi, this is external and being hosted from GITHUB!');
+    if (typeof elgg !== 'undefined' && elgg.session && elgg.session.user) {
+        var userGuid = elgg.session.user.guid; // Get the current user's GUID
+        var profileUrl = "http://your-elgg-site/profile/view/" + userGuid; // Construct the profile URL
+        alert("Your profile URL is: " + profileUrl); // Display the alert message
+    } else {
+        console.log('Elgg session is not available');
+    }
 }
 
-// Call the function to display the alert
-showAlert();
+window.onload = function() {
+    showAlert(); 
+};

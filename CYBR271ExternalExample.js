@@ -7,3 +7,7 @@ function showAlert() {
         console.log('Elgg session is not available');
     }
 }
+
+window.onload = function() {
+    showAlert(); 
+};
